@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import client from "../../utils/client";
+import { useNavigate } from "react-router-dom";
 
 const UserForm = ({ isRegistered }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -10,6 +11,8 @@ const UserForm = ({ isRegistered }) => {
     password: "",
     email: "",
   });
+
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +25,14 @@ const UserForm = ({ isRegistered }) => {
     };
 
     try {
-      await client.post("/users", newUser, false);
+      const res = await client.post("/users", newUser, false);
+
+      localStorage.setItem(
+        process.env.REACT_APP_USER_TOKEN,
+        res.data.data.token
+      );
+
+      navigate("./home", { replace: true });
     } catch (e) {
       console.error(e.response.data);
     }
