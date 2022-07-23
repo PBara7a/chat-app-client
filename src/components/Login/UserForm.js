@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import client from "../../utils/client";
 import { useNavigate } from "react-router-dom";
 
-const UserForm = ({ isRegistered }) => {
+const UserForm = ({ isRegistered, setIdOnLogin }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -19,8 +19,12 @@ const UserForm = ({ isRegistered }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!isRegistered && passwordsMatch) registerUser();
-    else if (isRegistered) login();
+    if (!isRegistered && passwordsMatch) {
+      await registerUser();
+      login();
+    } else if (isRegistered) {
+      login();
+    }
   };
 
   const registerUser = async () => {
@@ -32,14 +36,7 @@ const UserForm = ({ isRegistered }) => {
     };
 
     try {
-      const res = await client.post("/users", newUser, false);
-
-      localStorage.setItem(
-        process.env.REACT_APP_USER_TOKEN,
-        res.data.data.token
-      );
-
-      navigate("./home", { replace: true });
+      await client.post("/users", newUser, false);
     } catch (e) {
       console.error(e.response.data);
     }
@@ -50,6 +47,8 @@ const UserForm = ({ isRegistered }) => {
 
     try {
       const res = await client.post("/", user, false);
+
+      setIdOnLogin(res.data.data.user.id);
 
       localStorage.setItem(
         process.env.REACT_APP_USER_TOKEN,
@@ -74,7 +73,7 @@ const UserForm = ({ isRegistered }) => {
   return (
     <form onSubmit={handleSubmit}>
       {!isRegistered && (
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-1">
           <input
             className="input-custom mb-1"
             type="text"
@@ -95,7 +94,7 @@ const UserForm = ({ isRegistered }) => {
         </Form.Group>
       )}
 
-      <Form.Group className={passwordsMatch ? "mb-3" : "mb-1"}>
+      <Form.Group>
         <input
           required
           className="input-custom mb-1"
@@ -117,7 +116,7 @@ const UserForm = ({ isRegistered }) => {
         />
 
         {!isRegistered && (
-          <>
+          <div className="container-confirm-password">
             <input
               required
               className={
@@ -134,7 +133,7 @@ const UserForm = ({ isRegistered }) => {
             <Form.Text>
               {!passwordsMatch && "!Passwords do not match"}
             </Form.Text>
-          </>
+          </div>
         )}
       </Form.Group>
 

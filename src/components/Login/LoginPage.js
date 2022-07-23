@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { Container } from "react-bootstrap";
 import UserForm from "./UserForm";
 
-const LoginPage = () => {
+const LoginPage = ({ setIdOnLogin }) => {
   const [isRegistered, setIsRegistered] = useState(true);
 
   return (
-    <>
-      <div className="mb-5">
+    <Container>
+      <Container className="mb-5">
         <h1>Chat in the Box</h1>
-      </div>
+      </Container>
 
-      <UserForm isRegistered={isRegistered} />
+      <UserForm isRegistered={isRegistered} setIdOnLogin={setIdOnLogin} />
       {isRegistered && (
         <>
           <span>Not registered yet?</span>
@@ -33,7 +34,7 @@ const LoginPage = () => {
           </button>
         </>
       )}
-    </>
+    </Container>
   );
 };
 

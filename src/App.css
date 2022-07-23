@@ -1,5 +1,5 @@
 .App {
-  margin: 3rem auto;
+  margin: 1rem auto;
   text-align: center;
 }
 
@@ -8,7 +8,7 @@
   text-align: center;
   width: 100%;
   color: var(--primary-color);
-  background-color: #ffffff40;
+  background-color: var(--primary-color-transparent);
   border: 1px solid var(--primary-color);
   border-radius: 5px;
   padding: 1%;
@@ -16,6 +16,10 @@
 
 .input-custom__wrong {
   background-color: var(--alert-color);
+}
+
+.container-confirm-password {
+  height: 3.5rem;
 }
 
 .btn-custom {
