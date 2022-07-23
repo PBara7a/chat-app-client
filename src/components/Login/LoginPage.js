@@ -7,7 +7,7 @@ const LoginPage = () => {
   return (
     <>
       <div className="mb-5">
-        <h1>Chat App</h1>
+        <h1>Chat in the Box</h1>
       </div>
 
       <UserForm isRegistered={isRegistered} />

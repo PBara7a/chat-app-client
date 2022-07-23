@@ -14,6 +14,10 @@
   padding: 1%;
 }
 
+.input-custom__wrong {
+  background-color: var(--alert-color);
+}
+
 .btn-custom {
   background-color: var(--primary-color);
   color: var(--bg-color);

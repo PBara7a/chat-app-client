@@ -12,11 +12,18 @@ const UserForm = ({ isRegistered }) => {
     email: "",
   });
 
+  const passwordsMatch = formData.password === confirmPassword;
+
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!isRegistered && passwordsMatch) registerUser();
+    else if (isRegistered) login();
+  };
+
+  const registerUser = async () => {
     const newUser = {
       first_name: formData.firstName,
       last_name: formData.lastName,
@@ -26,6 +33,23 @@ const UserForm = ({ isRegistered }) => {
 
     try {
       const res = await client.post("/users", newUser, false);
+
+      localStorage.setItem(
+        process.env.REACT_APP_USER_TOKEN,
+        res.data.data.token
+      );
+
+      navigate("./home", { replace: true });
+    } catch (e) {
+      console.error(e.response.data);
+    }
+  };
+
+  const login = async () => {
+    const user = { email: formData.email, password: formData.password };
+
+    try {
+      const res = await client.post("/", user, false);
 
       localStorage.setItem(
         process.env.REACT_APP_USER_TOKEN,
@@ -71,7 +95,7 @@ const UserForm = ({ isRegistered }) => {
         </Form.Group>
       )}
 
-      <Form.Group className="mb-3">
+      <Form.Group className={passwordsMatch ? "mb-3" : "mb-1"}>
         <input
           required
           className="input-custom mb-1"
@@ -93,15 +117,24 @@ const UserForm = ({ isRegistered }) => {
         />
 
         {!isRegistered && (
-          <input
-            required
-            className="input-custom"
-            type="password"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            name="confirmPassword"
-            onChange={handleChange}
-          />
+          <>
+            <input
+              required
+              className={
+                passwordsMatch
+                  ? "input-custom"
+                  : "input-custom input-custom__wrong"
+              }
+              type="password"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              name="confirmPassword"
+              onChange={handleChange}
+            />
+            <Form.Text>
+              {!passwordsMatch && "!Passwords do not match"}
+            </Form.Text>
+          </>
         )}
       </Form.Group>
 

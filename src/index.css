@@ -2,6 +2,7 @@
   /* change this value for the background colour! */
   --bg-color: #50a3a2;
   --primary-color: #fff;
+  --alert-color: #fc6a03;
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
