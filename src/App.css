@@ -1,17 +1,40 @@
 .App {
+  margin: 3rem auto;
   text-align: center;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.input-custom {
+  display: block;
+  text-align: center;
+  width: 100%;
+  color: var(--primary-color);
+  background-color: #ffffff40;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  padding: 1%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.btn-custom {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 1%;
+  border-radius: 5px;
+}
+
+.btn-custom:hover {
+  transition: all 0.15s ease-in-out 0s;
+  -webkit-box-shadow: 0px 1px 10px 0px #383838;
+  box-shadow: 0px 1px 10px 0px #383838;
+}
+
+.form-btn {
+  width: 100%;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 100px 10px #72b4b4 inset !important;
+  -webkit-text-fill-color: var(--primary-color) !important;
 }
