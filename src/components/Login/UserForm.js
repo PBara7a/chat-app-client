@@ -48,7 +48,7 @@ const UserForm = ({ isRegistered, setIdOnLogin }) => {
     try {
       const res = await client.post("/", user, false);
 
-      setIdOnLogin(res.data.data.user.id);
+      localStorage.setItem("userId", res.data.data.user.id);
 
       localStorage.setItem(
         process.env.REACT_APP_USER_TOKEN,

@@ -15,7 +15,7 @@ const icons = {
   cursor: "pointer",
 };
 
-const Sidebar = ({ id }) => {
+const Sidebar = () => {
   const [activeTab, setActiveTab] = useState();
 
   const navigate = useNavigate();
@@ -23,6 +23,7 @@ const Sidebar = ({ id }) => {
   const logout = (e) => {
     e.preventDefault();
     localStorage.setItem(process.env.REACT_APP_USER_TOKEN, "");
+    localStorage.setItem("userId", "");
     navigate("../", { replace: true });
   };
 

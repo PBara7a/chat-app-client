@@ -46,3 +46,7 @@ select:-webkit-autofill {
   -webkit-box-shadow: 0 0 100px 10px #72b4b4 inset !important;
   -webkit-text-fill-color: var(--primary-color) !important;
 }
+
+.modal-content {
+  background-color: inherit !important;
+}

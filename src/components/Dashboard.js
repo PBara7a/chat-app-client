@@ -2,7 +2,7 @@ import Chat from "./Chat";
 import Sidebar from "./Sidebar/Sidebar";
 import "./dashboard.css";
 
-const Dashboard = ({ id }) => {
+const Dashboard = () => {
   return (
     <div className="dashboard">
       <Sidebar />
