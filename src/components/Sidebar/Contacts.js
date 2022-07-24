@@ -3,6 +3,7 @@ import { ListGroup } from "react-bootstrap";
 import client from "../../utils/client";
 import NewContactModal from "../Modals/NewContactModal";
 import { UserLoggedInContext } from "../contexts/UserLoggedInContext";
+import { BsPersonBoundingBox } from "react-icons/bs";
 
 export default function Contacts() {
   const [contacts, setContacts] = useState([]);
@@ -28,7 +29,16 @@ export default function Contacts() {
       </button>
       <ListGroup>
         {contacts.map((contact) => (
-          <ListGroup.Item key={contact.id}>{contact.name}</ListGroup.Item>
+          <li
+            className="contact-li align-items-center d-flex mb-1"
+            key={contact.id}
+          >
+            <BsPersonBoundingBox
+              className="me-4 ms-2"
+              style={{ fontSize: "1.5rem" }}
+            />
+            {contact.name}
+          </li>
         ))}
       </ListGroup>
 

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form } from "react-bootstrap";
 import client from "../../utils/client";
 import { useNavigate } from "react-router-dom";
+import { UserLoggedInContext } from "../contexts/UserLoggedInContext";
 
-const UserForm = ({ isRegistered, setIdOnLogin }) => {
+const UserForm = ({ isRegistered }) => {
+  const { setUserId } = useContext(UserLoggedInContext);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -49,6 +51,7 @@ const UserForm = ({ isRegistered, setIdOnLogin }) => {
       const res = await client.post("/", user, false);
 
       localStorage.setItem("userId", res.data.data.user.id);
+      setUserId(localStorage.getItem("userId"));
 
       localStorage.setItem(
         process.env.REACT_APP_USER_TOKEN,

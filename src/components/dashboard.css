@@ -22,3 +22,15 @@
   background-color: #202c33;
   border-left: 1px solid grey;
 }
+
+.contact-li {
+  list-style: none;
+  background-color: #111b21;
+  padding: 3%;
+  border-bottom: 2px solid #202c33;
+}
+
+.contact-li:hover {
+  cursor: pointer;
+  background-color: #202c33;
+}

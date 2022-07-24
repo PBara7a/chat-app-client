@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { AiOutlineComment, AiOutlinePoweroff } from "react-icons/ai";
@@ -6,7 +6,9 @@ import { RiAccountCircleFill } from "react-icons/ri";
 import { IoIosContacts } from "react-icons/io";
 import Chats from "./Chats";
 import Contacts from "./Contacts";
-import AccountInfo from "../AccountInfo";
+import UserAccountInfo from "../Modals/UserAccountInfo";
+import { UserLoggedInContext } from "../contexts/UserLoggedInContext";
+import client from "../../utils/client";
 
 const icons = {
   color: "#fff",
@@ -16,9 +18,21 @@ const icons = {
 };
 
 const Sidebar = () => {
-  const [activeTab, setActiveTab] = useState();
+  const [activeTab, setActiveTab] = useState("chats");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [user, setUser] = useState();
+  const { userId } = useContext(UserLoggedInContext);
+
+  useEffect(() => {
+    (async () => {
+      const res = await client.get(`/users/${userId}`);
+      setUser(res.data.data);
+    })();
+  }, [userId]);
 
   const navigate = useNavigate();
+
+  const closeModal = () => setModalOpen(false);
 
   const logout = (e) => {
     e.preventDefault();
@@ -32,7 +46,7 @@ const Sidebar = () => {
       <Nav className="sidebar-nav d-flex align-items-center position-relative">
         <Nav.Item
           className="position-absolute start-0"
-          onClick={() => setActiveTab("account")}
+          onClick={() => setModalOpen(true)}
         >
           <RiAccountCircleFill className="me-5" style={icons} />
         </Nav.Item>
@@ -52,12 +66,13 @@ const Sidebar = () => {
         </div>
       </Nav>
 
-      {activeTab === "chats" ? (
-        <Chats />
-      ) : activeTab === "contacts" ? (
-        <Contacts />
-      ) : (
-        <AccountInfo />
+      {activeTab === "chats" ? <Chats /> : <Contacts />}
+      {user && (
+        <UserAccountInfo
+          closeModal={closeModal}
+          modalOpen={modalOpen}
+          user={user}
+        />
       )}
     </div>
   );
