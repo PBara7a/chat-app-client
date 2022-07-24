@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "./components/Login/LoginPage";
 import Dashboard from "./components/Dashboard";
-import AuthenticateUser from "./components/AuthenticateUser";
+import AuthenticateUser from "./components/Auth/AuthenticateUser";
 
 function App() {
   const [userId, setUserId] = useState();

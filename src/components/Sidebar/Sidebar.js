@@ -6,7 +6,7 @@ import { RiAccountCircleFill } from "react-icons/ri";
 import { IoIosContacts } from "react-icons/io";
 import Chats from "./Chats";
 import Contacts from "./Contacts";
-import AccountInfo from "./AccountInfo";
+import AccountInfo from "../AccountInfo";
 
 const icons = {
   color: "#fff",

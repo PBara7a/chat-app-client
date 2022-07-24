@@ -1,5 +1,5 @@
 import Chat from "./Chat";
-import Sidebar from "./Sidebar";
+import Sidebar from "./Sidebar/Sidebar";
 import "./dashboard.css";
 
 const Dashboard = ({ id }) => {
