@@ -1,20 +1,16 @@
 import "./App.css";
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "./components/Login/LoginPage";
 import Dashboard from "./components/Dashboard";
 import AuthenticateUser from "./components/Auth/AuthenticateUser";
-import { UserLoggedInContext } from "./components/contexts/UserLoggedInContext";
+import { UserLoggedInContextProvider } from "./components/contexts/UserLoggedInContext";
 import { ContactsContextProvider } from "./components/contexts/ContactsContext";
 
-export const ContactsContext = React.createContext();
-
 function App() {
-  const [userId, setUserId] = useState(localStorage.getItem("userId"));
-
   return (
-    <UserLoggedInContext.Provider value={{ userId, setUserId }}>
-      <ContactsContextProvider id={userId}>
+    <UserLoggedInContextProvider>
+      <ContactsContextProvider>
         <div className="App">
           <Routes>
             <Route path="/" element={<LoginPage />} />
@@ -25,7 +21,7 @@ function App() {
           </Routes>
         </div>
       </ContactsContextProvider>
-    </UserLoggedInContext.Provider>
+    </UserLoggedInContextProvider>
   );
 }
 

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { AiOutlineComment, AiOutlinePoweroff } from "react-icons/ai";
@@ -7,7 +7,7 @@ import { IoIosContacts } from "react-icons/io";
 import Chats from "./Chats";
 import Contacts from "./Contacts";
 import UserAccountInfo from "../Modals/UserAccountInfo";
-import { UserLoggedInContext } from "../contexts/UserLoggedInContext";
+import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
 import client from "../../utils/client";
 
 const icons = {
@@ -21,7 +21,7 @@ const Sidebar = () => {
   const [activeTab, setActiveTab] = useState("chats");
   const [modalOpen, setModalOpen] = useState(false);
   const [user, setUser] = useState();
-  const { userId } = useContext(UserLoggedInContext);
+  const userId = useUserLoggedIn();
 
   useEffect(() => {
     (async () => {

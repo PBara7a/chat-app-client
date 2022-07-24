@@ -1,13 +1,13 @@
-import React, { useContext, useRef } from "react";
+import React, { useRef } from "react";
 import { Modal, Form } from "react-bootstrap";
 import client from "../../utils/client";
 import newContactJSON from "../../utils/newContactJSON";
-import { UserLoggedInContext } from "../contexts/UserLoggedInContext";
+import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
 import { useContactsUpdate } from "../contexts/ContactsContext";
 
 const NewContactModal = ({ closeModal, modalOpen }) => {
   const updateContacts = useContactsUpdate();
-  const { userId } = useContext(UserLoggedInContext);
+  const userId = useUserLoggedIn();
   const contactRef = useRef();
   const nameRef = useRef();
 
