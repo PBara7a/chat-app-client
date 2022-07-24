@@ -3,8 +3,10 @@ import { Modal, Form } from "react-bootstrap";
 import client from "../../utils/client";
 import newContactJSON from "../../utils/newContactJSON";
 import { UserLoggedInContext } from "../contexts/UserLoggedInContext";
+import { useContactsUpdate } from "../contexts/ContactsContext";
 
 const NewContactModal = ({ closeModal, modalOpen }) => {
+  const updateContacts = useContactsUpdate();
   const { userId } = useContext(UserLoggedInContext);
   const contactRef = useRef();
   const nameRef = useRef();
@@ -15,6 +17,8 @@ const NewContactModal = ({ closeModal, modalOpen }) => {
     const newContact = newContactJSON(userId, nameRef, contactRef);
 
     await client.post("/contacts", newContact, false);
+
+    await updateContacts();
 
     closeModal();
   };
