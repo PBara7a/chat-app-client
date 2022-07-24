@@ -8,7 +8,12 @@ import Chats from "./Chats";
 import Contacts from "./Contacts";
 import AccountInfo from "./AccountInfo";
 
-const icons = { color: "#fff", fontSize: "1.4rem", margin: "0 0.5rem" };
+const icons = {
+  color: "#fff",
+  fontSize: "1.4rem",
+  margin: "0 0.5rem",
+  cursor: "pointer",
+};
 
 const Sidebar = ({ id }) => {
   const [activeTab, setActiveTab] = useState();

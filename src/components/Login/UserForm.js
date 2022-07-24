@@ -55,7 +55,7 @@ const UserForm = ({ isRegistered, setIdOnLogin }) => {
         res.data.data.token
       );
 
-      navigate("./home", { replace: true });
+      navigate("./dashboard", { replace: true });
     } catch (e) {
       console.error(e.response.data);
     }
@@ -137,7 +137,7 @@ const UserForm = ({ isRegistered, setIdOnLogin }) => {
         )}
       </Form.Group>
 
-      <button type="submit" className="btn-custom form-btn mb-4">
+      <button type="submit" className="btn-custom w-100 mb-4">
         {isRegistered ? "Login" : "Register"}
       </button>
     </form>

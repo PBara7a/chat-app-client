@@ -16,7 +16,7 @@ const LoginPage = ({ setIdOnLogin }) => {
         <>
           <span>Not registered yet?</span>
           <button
-            className="btn-custom form-btn"
+            className="btn-custom w-100"
             onClick={() => setIsRegistered(!isRegistered)}
           >
             Sign up!
@@ -27,7 +27,7 @@ const LoginPage = ({ setIdOnLogin }) => {
         <>
           <div className="mb-2">Already registered?</div>
           <button
-            className="btn-custom form-btn"
+            className="btn-custom w-100"
             onClick={() => setIsRegistered(!isRegistered)}
           >
             Sign in!

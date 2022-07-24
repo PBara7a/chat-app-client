@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "./components/Login/LoginPage";
 import Dashboard from "./components/Dashboard";
+import AuthenticateUser from "./components/AuthenticateUser";
 
 function App() {
   const [userId, setUserId] = useState();
@@ -11,7 +12,10 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<LoginPage setIdOnLogin={setUserId} />} />
-        <Route path="/home" element={<Dashboard id={userId} />} />
+
+        <Route element={<AuthenticateUser redirectPath={"/"} />}>
+          <Route path="/dashboard" element={<Dashboard id={userId} />} />
+        </Route>
       </Routes>
     </div>
   );
