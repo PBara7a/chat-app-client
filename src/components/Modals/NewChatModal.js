@@ -5,15 +5,28 @@ import { useConversations } from "../contexts/ConversationsContext";
 
 export default function NewChatModal({ closeModal, modalOpen }) {
   const [selectedContactIds, setSelectedContactIds] = useState([]); // put back to empty after submit/close form
+  const [groupName, setGroupName] = useState("");
   const contacts = useContacts();
   const { createConversation } = useConversations();
+
+  const multipleRecipients = selectedContactIds.length > 1;
+  const recipientName = () => {
+    const recipient = contacts.find(
+      (contact) => contact.id === selectedContactIds[0]
+    );
+    return `${recipient.firstName} ${recipient.lastName}`;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    createConversation(selectedContactIds);
+    multipleRecipients
+      ? createConversation(selectedContactIds, groupName)
+      : createConversation(selectedContactIds, recipientName());
 
     closeModal();
+    setSelectedContactIds([]);
+    setGroupName("");
   };
 
   const handleChange = (contactId) => {
@@ -44,11 +57,20 @@ export default function NewChatModal({ closeModal, modalOpen }) {
               key={contact.id}
               type="checkbox"
               value={selectedContactIds.includes(contact.id)}
-              label={contact.name}
+              label={`${contact.firstName} ${contact.lastName}`}
               onChange={() => handleChange(contact.id)}
             />
           ))}
-          <button className="btn-custom w-100 mt-3">Chat</button>
+          {multipleRecipients && (
+            <input
+              required
+              className="input-custom mt-2 mb-2"
+              placeholder="Chat name"
+              value={groupName}
+              onChange={(e) => setGroupName(e.target.value)}
+            />
+          )}
+          <button className="btn-custom w-100 mt-1">Chat</button>
         </Form>
       </Modal.Body>
     </Modal>

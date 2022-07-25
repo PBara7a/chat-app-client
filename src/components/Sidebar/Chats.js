@@ -32,9 +32,7 @@ export default function Chats() {
               className="me-4 ms-2"
               style={{ fontSize: "1.5rem" }}
             />
-            {conversation.recipients
-              .map((recipient) => recipient.name)
-              .join(", ")}
+            {conversation.name}
           </li>
         ))}
       </ListGroup>
