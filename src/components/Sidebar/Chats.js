@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NewChatModal from "../Modals/NewChatModal";
 import { ListGroup } from "react-bootstrap";
 import { useConversations } from "../contexts/ConversationsContext";
+import { BsChatRightText } from "react-icons/bs";
 
 export default function Chats() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -20,16 +21,21 @@ export default function Chats() {
 
       <ListGroup variant="flush">
         {conversations.map((conversation, i) => (
-          <ListGroup.Item
+          <li
             key={i}
-            action
-            active={conversation.selected}
+            className={`mb-1 align-items-center d-flex contact-li ${
+              conversation.selected ? "selected" : ""
+            }`}
             onClick={() => selectConversation(i)}
           >
+            <BsChatRightText
+              className="me-4 ms-2"
+              style={{ fontSize: "1.5rem" }}
+            />
             {conversation.recipients
               .map((recipient) => recipient.name)
               .join(", ")}
-          </ListGroup.Item>
+          </li>
         ))}
       </ListGroup>
 

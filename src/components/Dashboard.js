@@ -1,4 +1,4 @@
-import Chat from "./Chat";
+import Chat from "./Main/Chat";
 import Sidebar from "./Sidebar/Sidebar";
 import "./dashboard.css";
 

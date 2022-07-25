@@ -1,7 +1,7 @@
 import { Modal } from "react-bootstrap";
 
 const UserAccountInfo = ({ closeModal, modalOpen, user }) => {
-  const name = `${user.user.first_name} ${user.user.first_name[0]}.`;
+  const name = `${user.user.first_name} ${user.user.last_name[0]}.`;
 
   return (
     <Modal centered show={modalOpen} onHide={closeModal}>
