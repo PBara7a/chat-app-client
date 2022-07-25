@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useConversations } from "../contexts/ConversationsContext";
-import { Form, InputGroup } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const Chat = () => {
   const { selectedConversation } = useConversations();

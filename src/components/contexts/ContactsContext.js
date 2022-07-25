@@ -14,13 +14,13 @@ export const ContactsContextProvider = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const res = await client.get(`/contacts/${id}`);
+      const res = await client.get(`/users/${id}/contacts`);
       setContacts(res.data.data);
     })();
   }, [id]);
 
   const updateContacts = async () => {
-    const res = await client.get(`/contacts/${id}`);
+    const res = await client.get(`/users/${id}/contacts`);
     setContacts(res.data.data);
   };
 

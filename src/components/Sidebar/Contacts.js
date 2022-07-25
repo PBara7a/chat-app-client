@@ -10,6 +10,8 @@ export default function Contacts() {
 
   const closeModal = () => setModalOpen(false);
 
+  const formatName = (contact) => `${contact.firstName} ${contact.lastName}`;
+
   return (
     <>
       <button
@@ -29,7 +31,7 @@ export default function Contacts() {
                 className="me-4 ms-2"
                 style={{ fontSize: "1.5rem" }}
               />
-              {contact.name}
+              {formatName(contact)}
             </li>
           ))}
       </ListGroup>

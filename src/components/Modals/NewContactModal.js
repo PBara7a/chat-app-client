@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Modal, Form } from "react-bootstrap";
 import client from "../../utils/client";
 import newContactJSON from "../../utils/newContactJSON";
@@ -9,18 +9,26 @@ const NewContactModal = ({ closeModal, modalOpen }) => {
   const updateContacts = useContactsUpdate();
   const userId = useUserLoggedIn();
   const contactRef = useRef();
-  const nameRef = useRef();
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!modalOpen) setError("");
+  }, [modalOpen]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newContact = newContactJSON(userId, nameRef, contactRef);
+    const newContact = newContactJSON(contactRef);
 
-    await client.post("/contacts", newContact, false);
+    try {
+      await client.post(`/users/${userId}/contacts`, newContact, false);
 
-    await updateContacts();
+      await updateContacts();
 
-    closeModal();
+      closeModal();
+    } catch (e) {
+      setError(e.response.data.message);
+    }
   };
 
   return (
@@ -36,21 +44,16 @@ const NewContactModal = ({ closeModal, modalOpen }) => {
           borderBottomRightRadius: "10px",
         }}
       >
+        {error && error}
         <Form onSubmit={handleSubmit}>
           <input
-            className="input-custom mb-1"
-            type="text"
+            className={`input-custom mb-2 ${
+              error ? "input-custom__wrong" : ""
+            }`}
+            type="number"
             placeholder="Contact number"
             name="id"
             ref={contactRef}
-          />
-
-          <input
-            className="input-custom mb-2"
-            type="text"
-            placeholder="Name"
-            name="name"
-            ref={nameRef}
           />
 
           <button className="btn-custom w-100">Add contact</button>
