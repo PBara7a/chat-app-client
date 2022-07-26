@@ -3,10 +3,10 @@ import { Modal, Form } from "react-bootstrap";
 import client from "../../utils/client";
 import newContactJSON from "../../utils/newContactJSON";
 import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
-import { useContactsUpdate } from "../contexts/ContactsContext";
+import { useContacts } from "../contexts/ContactsContext";
 
 const NewContactModal = ({ closeModal, modalOpen }) => {
-  const updateContacts = useContactsUpdate();
+  const { updateContacts } = useContacts();
   const { id } = useUserLoggedIn();
   const contactRef = useRef();
   const [error, setError] = useState("");

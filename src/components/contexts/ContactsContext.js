@@ -3,10 +3,8 @@ import client from "../../utils/client";
 import { useUserLoggedIn } from "./UserLoggedInContext";
 
 const ContactsContext = React.createContext();
-const ContactsUpdateContext = React.createContext();
 
 export const useContacts = () => useContext(ContactsContext);
-export const useContactsUpdate = () => useContext(ContactsUpdateContext);
 
 export const ContactsContextProvider = ({ children }) => {
   const [contacts, setContacts] = useState([]);
@@ -26,11 +24,14 @@ export const ContactsContextProvider = ({ children }) => {
     setContacts(res.data.data);
   };
 
+  const value = {
+    contacts,
+    updateContacts,
+  };
+
   return (
-    <ContactsContext.Provider value={contacts}>
-      <ContactsUpdateContext.Provider value={updateContacts}>
-        {children}
-      </ContactsUpdateContext.Provider>
+    <ContactsContext.Provider value={value}>
+      {children}
     </ContactsContext.Provider>
   );
 };

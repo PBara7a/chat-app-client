@@ -6,7 +6,7 @@ import { useContacts } from "../contexts/ContactsContext";
 
 export default function Contacts() {
   const [modalOpen, setModalOpen] = useState(false);
-  const contacts = useContacts();
+  const { contacts } = useContacts();
 
   const closeModal = () => setModalOpen(false);
 

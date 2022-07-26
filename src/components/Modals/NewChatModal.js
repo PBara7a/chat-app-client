@@ -6,7 +6,7 @@ import { useConversations } from "../contexts/ConversationsContext";
 export default function NewChatModal({ closeModal, modalOpen }) {
   const [selectedContactIds, setSelectedContactIds] = useState([]); // put back to empty after submit/close form
   const [groupName, setGroupName] = useState("");
-  const contacts = useContacts();
+  const { contacts } = useContacts();
   const { createConversation } = useConversations();
 
   const multipleRecipients = selectedContactIds.length > 1;

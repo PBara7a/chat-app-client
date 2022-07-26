@@ -11,7 +11,7 @@ export const ConversationsContextProvider = ({ children }) => {
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
   const [conversations, setConversations] = useState([]);
   const { id } = useUserLoggedIn();
-  const contacts = useContacts();
+  const { contacts } = useContacts();
 
   useEffect(() => {
     (async () => {
