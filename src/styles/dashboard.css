@@ -1,24 +1,30 @@
 .dashboard {
   display: grid;
-  grid-template-columns: 2fr 6fr;
+  grid-auto-flow: column;
   box-shadow: 0 0 100px 1000px #0a1014;
+  height: 95vh;
 }
 
 .sidebar {
   background-color: #111b21;
+  width: 15vw;
 }
 
 .sidebar-nav {
-  height: 3rem;
+  height: 7vh;
   background-color: #202c33;
 }
 
 .chat {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   background-color: var(--primary-color-transparent);
+  overflow: auto;
+  width: 55vw;
 }
 
 .chat-header {
-  height: 3rem;
+  height: 7vh;
   background-color: #202c33;
   border-left: 1px solid grey;
 }
@@ -42,4 +48,19 @@
 .message-area {
   display: grid;
   grid-template-columns: 10fr 1fr;
+}
+
+.message-me {
+  background-color: #cc7722;
+  /* color: #0a1014; */
+}
+
+.message-others {
+  background-color: #d0f0e3;
+  color: var(--bg-darker-color);
+}
+
+.msg-panel {
+  max-height: 100%;
+  overflow: auto;
 }

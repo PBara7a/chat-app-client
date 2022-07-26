@@ -31,12 +31,9 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="sidebar" style={{ height: "95vh", width: "100%" }}>
+    <div className="sidebar">
       <Nav className="sidebar-nav d-flex align-items-center position-relative">
-        <Nav.Item
-          className="position-absolute start-0"
-          onClick={() => setModalOpen(true)}
-        >
+        <Nav.Item onClick={() => setModalOpen(true)}>
           <RiAccountCircleFill className="me-5" style={icons} />
         </Nav.Item>
 

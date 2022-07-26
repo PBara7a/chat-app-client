@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useConversations } from "../contexts/ConversationsContext";
-import { Form } from "react-bootstrap";
+import MessageForm from "./MessageForm";
+import MessagesPanel from "./MessagesPanel";
 
 const Chat = () => {
-  const { selectedConversation } = useConversations();
   const [text, setText] = useState("");
+  const { selectedConversation, sendMessage } = useConversations();
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -12,41 +13,27 @@ const Chat = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    sendMessage(text);
+    setText("");
   };
 
   return (
-    <div
-      className="chat d-flex flex-column flex-grow-1"
-      style={{ width: "1100px", height: "95vh" }}
-    >
+    <>
       {selectedConversation && (
-        <>
-          <div className="chat-header"></div>
-          <div className="flex-grow-1 overflow-auto"></div>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="m-2">
-              <div className="message-area">
-                <input
-                  type="textarea"
-                  className="input-custom"
-                  required
-                  value={text}
-                  onChange={handleChange}
-                  style={{ height: "3rem" }}
-                />
-                <button
-                  className="btn-custom ms-2"
-                  type="submit"
-                  style={{ display: "inline-block" }}
-                >
-                  Send
-                </button>
-              </div>
-            </Form.Group>
-          </Form>
-        </>
+        <div className="chat">
+          <header className="chat-header">{selectedConversation.name}</header>
+
+          <MessagesPanel />
+
+          <MessageForm
+            text={text}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

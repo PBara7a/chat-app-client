@@ -6,7 +6,7 @@ const UserLoggedInContext = React.createContext();
 export const useUserLoggedIn = () => useContext(UserLoggedInContext);
 
 export const UserLoggedInContextProvider = ({ children }) => {
-  const [userId, setUserId] = useState(localStorage.getItem("userId"));
+  const [userId, setUserId] = useState(Number(localStorage.getItem("userId")));
   const [userLoggedin, setUserLoggedIn] = useState({});
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export const UserLoggedInContextProvider = ({ children }) => {
     })();
   }, [userId]);
 
-  const updateUserId = (id) => setUserId(id);
+  const updateUserId = (id) => setUserId(Number(id));
 
   const value = {
     id: userId,

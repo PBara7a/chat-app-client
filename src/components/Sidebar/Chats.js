@@ -13,7 +13,7 @@ export default function Chats() {
   return (
     <>
       <button
-        className="btn-custom w-100 mt-1 mb-1"
+        className="btn-custom mt-1 mb-1"
         onClick={() => setModalOpen(true)}
       >
         Start new chat +

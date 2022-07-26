@@ -1,12 +1,12 @@
-import "./App.css";
+import "../styles/app.css";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import LoginPage from "./components/Login/LoginPage";
-import Dashboard from "./components/Dashboard";
-import AuthenticateUser from "./components/Auth/AuthenticateUser";
-import { UserLoggedInContextProvider } from "./components/contexts/UserLoggedInContext";
-import { ContactsContextProvider } from "./components/contexts/ContactsContext";
-import { ConversationsContextProvider } from "./components/contexts/ConversationsContext";
+import LoginPage from "./Login/LoginPage";
+import Dashboard from "./Dashboard";
+import AuthenticateUser from "./Auth/AuthenticateUser";
+import { UserLoggedInContextProvider } from "./contexts/UserLoggedInContext";
+import { ContactsContextProvider } from "./contexts/ContactsContext";
+import { ConversationsContextProvider } from "./contexts/ConversationsContext";
 
 function App() {
   return (

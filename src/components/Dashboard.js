@@ -1,6 +1,6 @@
 import Chat from "./Main/Chat";
 import Sidebar from "./Sidebar/Sidebar";
-import "./dashboard.css";
+import "../styles/dashboard.css";
 
 const Dashboard = () => {
   return (

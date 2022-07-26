@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useContacts } from "./ContactsContext";
 import { useUserLoggedIn } from "./UserLoggedInContext";
 import client from "../../utils/client";
 
@@ -11,7 +10,7 @@ export const ConversationsContextProvider = ({ children }) => {
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
   const [conversations, setConversations] = useState([]);
   const { id } = useUserLoggedIn();
-  const { contacts } = useContacts();
+  let messages;
 
   useEffect(() => {
     (async () => {
@@ -22,9 +21,21 @@ export const ConversationsContextProvider = ({ children }) => {
     })();
   }, [id]);
 
+  const formattedConversations = conversations.map((conversation, index) => {
+    const selected = index === selectedConversationIndex;
+    return { ...conversation, selected };
+  });
+
+  const selectedConversation =
+    formattedConversations[selectedConversationIndex];
+
+  if (selectedConversation) {
+    messages = selectedConversation.messages;
+  }
+
   const createConversation = async (recipients, name) => {
     const data = {
-      owner_id: Number(id),
+      owner_id: id,
       name,
       participants: recipients,
     };
@@ -39,24 +50,24 @@ export const ConversationsContextProvider = ({ children }) => {
     setConversations(res.data.data);
   };
 
-  const formattedConversations = conversations.map((conversation, index) => {
-    const recipients = conversation.participants.map((participant) => {
-      const contact = contacts.find((contact) => {
-        return contact.id === participant.id;
-      });
-      const name = contact && formatName(contact);
-      return { recipient: participant.number, name };
-    });
+  const sendMessage = async (text) => {
+    const messageJSON = {
+      sender_id: id,
+      conversation_id: selectedConversation.id,
+      text: text,
+    };
 
-    const selected = index === selectedConversationIndex;
-    return { ...conversation, recipients, selected };
-  });
+    await client.post("/messages", messageJSON, false);
+    await updateConversations();
+  };
 
   const value = {
     conversations: formattedConversations,
-    selectedConversation: formattedConversations[selectedConversationIndex],
+    selectedConversation,
     selectConversation: setSelectedConversationIndex,
     createConversation,
+    sendMessage,
+    messages,
   };
 
   return (
@@ -65,5 +76,3 @@ export const ConversationsContextProvider = ({ children }) => {
     </ConversationsContext.Provider>
   );
 };
-
-const formatName = (contact) => `${contact.firstName} ${contact.lastName}`;

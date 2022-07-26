@@ -15,7 +15,7 @@ export default function Contacts() {
   return (
     <>
       <button
-        className="btn-custom w-100 mt-1 mb-1"
+        className="btn-custom mt-1 mb-1"
         onClick={() => setModalOpen(true)}
       >
         Add new contact +
