@@ -58,7 +58,7 @@ const UserForm = ({ isRegistered }) => {
         res.data.data.token
       );
 
-      navigate("./dashboard", { replace: true });
+      navigate("../", { replace: true });
     } catch (e) {
       console.error(e.response.data);
     }

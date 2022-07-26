@@ -15,10 +15,10 @@ function App() {
         <ConversationsContextProvider>
           <div className="App">
             <Routes>
-              <Route path="/" element={<LoginPage />} />
+              <Route path="/login" element={<LoginPage />} />
 
-              <Route element={<AuthenticateUser redirectPath={"/"} />}>
-                <Route path="/dashboard" element={<Dashboard />} />
+              <Route element={<AuthenticateUser redirectPath={"/login"} />}>
+                <Route path="/" element={<Dashboard />} />
               </Route>
             </Routes>
           </div>

@@ -27,7 +27,7 @@ const Sidebar = () => {
     e.preventDefault();
     localStorage.setItem(process.env.REACT_APP_USER_TOKEN, "");
     localStorage.setItem("userId", "");
-    navigate("../", { replace: true });
+    navigate("../login", { replace: true });
   };
 
   return (
