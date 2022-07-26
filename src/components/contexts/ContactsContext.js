@@ -10,12 +10,14 @@ export const useContactsUpdate = () => useContext(ContactsUpdateContext);
 
 export const ContactsContextProvider = ({ children }) => {
   const [contacts, setContacts] = useState([]);
-  const id = useUserLoggedIn();
+  const { id } = useUserLoggedIn();
 
   useEffect(() => {
     (async () => {
-      const res = await client.get(`/users/${id}/contacts`);
-      setContacts(res.data.data);
+      if (id) {
+        const res = await client.get(`/users/${id}/contacts`);
+        setContacts(res.data.data);
+      }
     })();
   }, [id]);
 

@@ -7,7 +7,7 @@ import { useContactsUpdate } from "../contexts/ContactsContext";
 
 const NewContactModal = ({ closeModal, modalOpen }) => {
   const updateContacts = useContactsUpdate();
-  const userId = useUserLoggedIn();
+  const { id } = useUserLoggedIn();
   const contactRef = useRef();
   const [error, setError] = useState("");
 
@@ -21,7 +21,7 @@ const NewContactModal = ({ closeModal, modalOpen }) => {
     const newContact = newContactJSON(contactRef);
 
     try {
-      await client.post(`/users/${userId}/contacts`, newContact, false);
+      await client.post(`/users/${id}/contacts`, newContact, false);
 
       await updateContacts();
 

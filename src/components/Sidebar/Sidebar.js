@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { AiOutlineComment, AiOutlinePoweroff } from "react-icons/ai";
@@ -7,8 +7,6 @@ import { IoIosContacts } from "react-icons/io";
 import Chats from "./Chats";
 import Contacts from "./Contacts";
 import UserAccountInfo from "../Modals/UserAccountInfo";
-import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
-import client from "../../utils/client";
 
 const icons = {
   color: "#fff",
@@ -20,15 +18,6 @@ const icons = {
 const Sidebar = () => {
   const [activeTab, setActiveTab] = useState("chats");
   const [modalOpen, setModalOpen] = useState(false);
-  const [user, setUser] = useState();
-  const userId = useUserLoggedIn();
-
-  useEffect(() => {
-    (async () => {
-      const res = await client.get(`/users/${userId}`);
-      setUser(res.data.data);
-    })();
-  }, [userId]);
 
   const navigate = useNavigate();
 
@@ -67,13 +56,7 @@ const Sidebar = () => {
       </Nav>
 
       {activeTab === "chats" ? <Chats /> : <Contacts />}
-      {user && (
-        <UserAccountInfo
-          closeModal={closeModal}
-          modalOpen={modalOpen}
-          user={user}
-        />
-      )}
+      <UserAccountInfo closeModal={closeModal} modalOpen={modalOpen} />
     </div>
   );
 };

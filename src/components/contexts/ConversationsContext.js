@@ -10,13 +10,15 @@ export const useConversations = () => useContext(ConversationsContext);
 export const ConversationsContextProvider = ({ children }) => {
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
   const [conversations, setConversations] = useState([]);
-  const id = useUserLoggedIn();
+  const { id } = useUserLoggedIn();
   const contacts = useContacts();
 
   useEffect(() => {
     (async () => {
-      const res = await client.get(`/conversations/${id}`);
-      setConversations(res.data.data);
+      if (id) {
+        const res = await client.get(`/conversations/${id}`);
+        setConversations(res.data.data);
+      }
     })();
   }, [id]);
 

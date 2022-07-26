@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import client from "../../utils/client";
 import { useNavigate } from "react-router-dom";
-import { useUserLoggedInUpdate } from "../contexts/UserLoggedInContext";
+import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
 
 const UserForm = ({ isRegistered }) => {
-  const updateUserId = useUserLoggedInUpdate();
+  const { updateUserId } = useUserLoggedIn();
   const [confirmPassword, setConfirmPassword] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
