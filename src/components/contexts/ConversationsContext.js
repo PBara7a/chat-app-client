@@ -50,15 +50,14 @@ export const ConversationsContextProvider = ({ children }) => {
     setConversations(res.data.data);
   };
 
-  const sendMessage = async (text) => {
+  const sendMessage = async (socket, text, recipients) => {
     const messageJSON = {
       sender_id: id,
       conversation_id: selectedConversation.id,
-      text: text,
+      text,
     };
 
-    await client.post("/messages", messageJSON, false);
-    await updateConversations();
+    socket.emit("send-message", messageJSON, recipients);
   };
 
   const value = {
@@ -68,6 +67,7 @@ export const ConversationsContextProvider = ({ children }) => {
     createConversation,
     sendMessage,
     messages,
+    updateConversations,
   };
 
   return (
