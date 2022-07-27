@@ -1,9 +1,9 @@
 import { Modal } from "react-bootstrap";
 import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
+import formatUserName from "../../utils/formatUserName";
 
 const UserAccountInfo = ({ closeModal, modalOpen }) => {
   const { user } = useUserLoggedIn();
-  const name = `${user?.first_name} ${user?.last_name[0]}.`;
 
   return (
     <Modal centered show={modalOpen} onHide={closeModal}>
@@ -18,7 +18,7 @@ const UserAccountInfo = ({ closeModal, modalOpen }) => {
           borderBottomRightRadius: "10px",
         }}
       >
-        <div>Name: {name}</div>
+        <div>Name: {formatUserName(user)}</div>
         <div>Contact: {user?.number}</div>
       </Modal.Body>
     </Modal>

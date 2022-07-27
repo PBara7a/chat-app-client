@@ -3,14 +3,13 @@ import { ListGroup } from "react-bootstrap";
 import NewContactModal from "../Modals/NewContactModal";
 import { BsPersonBoundingBox } from "react-icons/bs";
 import { useContacts } from "../contexts/ContactsContext";
+import formatUserName from "../../utils/formatUserName";
 
 export default function Contacts() {
   const [modalOpen, setModalOpen] = useState(false);
   const { contacts } = useContacts();
 
   const closeModal = () => setModalOpen(false);
-
-  const formatName = (contact) => `${contact.firstName} ${contact.lastName}`;
 
   return (
     <>
@@ -31,7 +30,7 @@ export default function Contacts() {
                 className="me-4 ms-2"
                 style={{ fontSize: "1.5rem" }}
               />
-              {formatName(contact)}
+              {formatUserName(contact)}
             </li>
           ))}
       </ListGroup>

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import client from "../../utils/client";
+import userLoggedInFromJson from "../../utils/userLoggedInFromJson";
 
 const UserLoggedInContext = React.createContext();
 
@@ -13,7 +14,8 @@ export const UserLoggedInContextProvider = ({ children }) => {
     (async () => {
       if (userId) {
         const res = await client.get(`/users/${userId}`);
-        setUserLoggedIn(res.data.data);
+        const user = userLoggedInFromJson(res.data.data.user);
+        setUserLoggedIn(user);
       }
     })();
   }, [userId]);
@@ -23,7 +25,7 @@ export const UserLoggedInContextProvider = ({ children }) => {
   const value = {
     id: userId,
     updateUserId,
-    user: userLoggedin.user,
+    user: userLoggedin,
   };
 
   return (

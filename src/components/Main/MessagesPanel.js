@@ -7,8 +7,20 @@ const MessagesPanel = () => {
   const { id } = useUserLoggedIn();
   const { contacts } = useContacts();
 
+  const msgSender = (message) => {
+    const knownContact = contacts.find(
+      (contact) => contact.id === message.senderId
+    );
+
+    if (knownContact) return knownContact.firstName;
+
+    if (message.senderId === id) return "You";
+
+    return message.sender.number;
+  };
+
   return (
-    <div className="msg-panel d-flex flex-column align-items-start px-3">
+    <div className="msg-panel d-flex flex-column align-items-start px-5">
       {messages.map((message) => (
         <div
           key={message.id}
@@ -28,8 +40,7 @@ const MessagesPanel = () => {
               message.senderId === id ? "text-end" : "text-start"
             }`}
           >
-            {contacts.find((contact) => contact.id === message.senderId)
-              ?.firstName || "You"}
+            {msgSender(message)}
           </div>
         </div>
       ))}

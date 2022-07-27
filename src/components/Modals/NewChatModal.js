@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Form } from "react-bootstrap";
 import { useContacts } from "../contexts/ContactsContext";
 import { useConversations } from "../contexts/ConversationsContext";
+import formatUserName from "../../utils/formatUserName";
 
 export default function NewChatModal({ closeModal, modalOpen }) {
   const [selectedContactIds, setSelectedContactIds] = useState([]); // put back to empty after submit/close form
@@ -14,7 +15,7 @@ export default function NewChatModal({ closeModal, modalOpen }) {
     const recipient = contacts.find(
       (contact) => contact.id === selectedContactIds[0]
     );
-    return `${recipient.firstName} ${recipient.lastName}`;
+    return formatUserName(recipient);
   };
 
   const handleSubmit = (e) => {
@@ -57,7 +58,7 @@ export default function NewChatModal({ closeModal, modalOpen }) {
               key={contact.id}
               type="checkbox"
               value={selectedContactIds.includes(contact.id)}
-              label={`${contact.firstName} ${contact.lastName}`}
+              label={formatUserName(contact)}
               onChange={() => handleChange(contact.id)}
             />
           ))}
