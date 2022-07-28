@@ -3,15 +3,17 @@ import { useConversations } from "../contexts/ConversationsContext";
 import MessageForm from "./MessageForm";
 import MessagesPanel from "./MessagesPanel";
 import { useSocket } from "../contexts/SocketContext";
+import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
 
 const Chat = () => {
   const [text, setText] = useState("");
   const { selectedConversation, sendMessage } = useConversations();
   const socket = useSocket();
+  const { id } = useUserLoggedIn();
 
-  const recipients = selectedConversation?.participants.map(
-    (participant) => participant.number
-  );
+  const recipients = selectedConversation?.participants
+    .filter((participant) => participant.id !== id)
+    .map((contact) => contact.number);
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -29,7 +31,7 @@ const Chat = () => {
       {selectedConversation && (
         <div className="chat">
           <header className="chat-header">
-            {selectedConversation.displayName}
+            <h1 className="chat-title">{selectedConversation.displayName}</h1>
           </header>
 
           <MessagesPanel />

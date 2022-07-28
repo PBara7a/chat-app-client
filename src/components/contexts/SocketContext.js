@@ -18,6 +18,8 @@ export const SocketContextProvider = ({ children }) => {
         query: { number: user.number },
       });
 
+      newSocket.emit("user-connected", user.number);
+
       newSocket.on("received-message", async () => {
         await updateConversations();
       });

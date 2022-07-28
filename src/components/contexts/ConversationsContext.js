@@ -45,7 +45,7 @@ export const ConversationsContextProvider = ({ children }) => {
     const data = {
       owner_id: id,
       name,
-      participants: recipients,
+      participants: [...recipients, id],
     };
 
     await client.post("/conversations", data, false);
