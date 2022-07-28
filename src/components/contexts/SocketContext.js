@@ -19,7 +19,6 @@ export const SocketContextProvider = ({ children }) => {
       });
 
       newSocket.on("received-message", async () => {
-        console.log("yeoooo");
         await updateConversations();
       });
 

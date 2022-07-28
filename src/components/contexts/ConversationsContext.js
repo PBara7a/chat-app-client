@@ -9,8 +9,9 @@ export const useConversations = () => useContext(ConversationsContext);
 export const ConversationsContextProvider = ({ children }) => {
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
   const [conversations, setConversations] = useState([]);
-  const { id } = useUserLoggedIn();
+  const { id, user } = useUserLoggedIn();
   let messages;
+  let tempMessageId = 1;
 
   useEffect(() => {
     (async () => {
@@ -56,6 +57,15 @@ export const ConversationsContextProvider = ({ children }) => {
       conversation_id: selectedConversation.id,
       text,
     };
+
+    const newMessageState = {
+      id: --tempMessageId,
+      senderId: id,
+      conversationId: selectedConversation.id,
+      text: text,
+      sender: { number: user.number },
+    };
+    messages.push(newMessageState);
 
     socket.emit("send-message", messageJSON, recipients);
   };
