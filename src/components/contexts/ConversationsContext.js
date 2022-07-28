@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useUserLoggedIn } from "./UserLoggedInContext";
+import { useContacts } from "./ContactsContext";
 import client from "../../utils/client";
+import setChatName from "../../utils/setChatName";
 
 const ConversationsContext = React.createContext();
 
@@ -10,6 +12,7 @@ export const ConversationsContextProvider = ({ children }) => {
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
   const [conversations, setConversations] = useState([]);
   const { id, user } = useUserLoggedIn();
+  const { contacts } = useContacts();
   let messages;
   let tempMessageId = 1;
 
@@ -24,7 +27,11 @@ export const ConversationsContextProvider = ({ children }) => {
 
   const formattedConversations = conversations.map((conversation, index) => {
     const selected = index === selectedConversationIndex;
-    return { ...conversation, selected };
+    return {
+      ...conversation,
+      selected,
+      displayName: setChatName(conversation, user, contacts),
+    };
   });
 
   const selectedConversation =

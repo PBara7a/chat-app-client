@@ -28,7 +28,9 @@ const Chat = () => {
     <>
       {selectedConversation && (
         <div className="chat">
-          <header className="chat-header">{selectedConversation.name}</header>
+          <header className="chat-header">
+            {selectedConversation.displayName}
+          </header>
 
           <MessagesPanel />
 
