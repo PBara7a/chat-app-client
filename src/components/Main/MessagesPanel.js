@@ -1,23 +1,12 @@
 import { useContacts } from "../contexts/ContactsContext";
 import { useConversations } from "../contexts/ConversationsContext";
 import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
+import getMessageSender from "../../utils/getMessageSender";
 
 const MessagesPanel = () => {
   const { messages } = useConversations();
   const { id } = useUserLoggedIn();
   const { contacts } = useContacts();
-
-  const msgSender = (message) => {
-    const knownContact = contacts.find(
-      (contact) => contact.id === message.senderId
-    );
-
-    if (knownContact) return knownContact.firstName;
-
-    if (message.senderId === id) return "You";
-
-    return message.sender.number;
-  };
 
   return (
     <div className="msg-panel d-flex flex-column align-items-start">
@@ -40,7 +29,7 @@ const MessagesPanel = () => {
               message.senderId === id ? "text-end" : "text-start"
             }`}
           >
-            {msgSender(message)}
+            {getMessageSender(message, id, contacts)}
           </div>
         </div>
       ))}
