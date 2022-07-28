@@ -6,7 +6,7 @@ const LoginPage = ({ setIdOnLogin }) => {
   const [isRegistered, setIsRegistered] = useState(true);
 
   return (
-    <Container>
+    <Container className="login-page">
       <Container className="mb-5">
         <h1>Chat in the Box</h1>
       </Container>

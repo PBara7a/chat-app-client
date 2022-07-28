@@ -31,18 +31,20 @@ const Chat = () => {
     <>
       {selectedConversation && (
         <div className="chat">
-          <header className="chat-header">
-            <HiddenSideBar />
-            <h1 className="chat-title">{selectedConversation.displayName}</h1>
-          </header>
+          <div className="chat-overlay">
+            <header className="chat-header">
+              <HiddenSideBar />
+              <h1 className="chat-title">{selectedConversation.displayName}</h1>
+            </header>
 
-          <MessagesPanel />
+            <MessagesPanel />
 
-          <MessageForm
-            text={text}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />
+            <MessageForm
+              text={text}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+            />
+          </div>
         </div>
       )}
     </>

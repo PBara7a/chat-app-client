@@ -3,6 +3,129 @@
   text-align: center;
 }
 
+/* ----------  */
+/* Login Page  */
+/* ----------  */
+
+.login-page {
+  background-color: var(--bg-color-login);
+  box-shadow: 0 0 100px 1000px var(--bg-color-login);
+}
+
+/* ---------  */
+/* Dashboard  */
+/* ---------  */
+
+.dashboard {
+  display: grid;
+  grid-auto-flow: column;
+  background-color: var(--bg-color);
+  height: 95vh;
+}
+
+/* -------  */
+/* Sidebar  */
+/* -------  */
+
+.sidebar {
+  background-color: var(--bg-color-sidebar);
+  width: 15vw;
+}
+
+.sidebar-nav {
+  height: 7vh;
+  background-color: var(--bg-color-nav);
+  border-right: 1px solid grey;
+}
+
+.sidebar-toggle {
+  display: none;
+}
+
+.menu-li {
+  list-style: none;
+  padding: 3%;
+  border-bottom: 2px solid var(--bg-color-nav);
+}
+
+.selected {
+  background-color: var(--bg-color-nav);
+}
+
+.menu-li:hover {
+  cursor: pointer;
+  background-color: var(--bg-color-nav);
+}
+
+.sidebar-icon {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.sidebar-hidden-icon {
+  font-size: 1.6rem;
+  margin: 0 0.5rem;
+}
+
+/* ---------- */
+/* Chat-panel */
+/* ---------- */
+
+.chat {
+  background-color: var(--bg-color-login);
+  width: 55vw;
+}
+
+.chat-overlay {
+  height: 100%;
+  background-color: var(--primary-color-transparent);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: auto;
+}
+
+.chat-header {
+  display: grid;
+  place-items: center;
+  height: 7vh;
+  background-color: var(--bg-color-nav);
+}
+
+.chat-title {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.msg-panel {
+  max-height: 100%;
+  overflow: auto;
+  padding: 2rem 3rem;
+}
+
+.message-me {
+  background-color: var(--message-sent);
+}
+
+.message-others {
+  background-color: var(--message-received);
+  color: var(--bg-color-sidebar);
+}
+
+.message-area {
+  display: grid;
+  grid-template-columns: 10fr 1fr;
+}
+
+.message-area input {
+  height: 3rem;
+}
+
+/* ------------- */
+/* miscellaneous */
+/* ------------- */
+
 .input-custom {
   display: block;
   text-align: center;
@@ -24,7 +147,7 @@
 
 .btn-custom {
   background-color: var(--primary-color);
-  color: var(--bg-color);
+  color: var(--bg-color-login);
   border: none;
   padding: 1%;
   border-radius: 5px;
@@ -49,7 +172,7 @@ select:-webkit-autofill {
 }
 
 /* --------- */
-/*Scrollbar   */
+/* Scrollbar */
 /* --------- */
 
 ::-webkit-scrollbar {
@@ -70,4 +193,50 @@ select:-webkit-autofill {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #fff9;
+}
+
+/* -------------  */
+/* Media Queries  */
+/* -------------  */
+
+@media screen and (max-width: 1400px) {
+  .sidebar {
+    display: none;
+  }
+
+  .sidebar-toggle {
+    display: inline;
+  }
+
+  .chat-header {
+    grid-auto-flow: column;
+    height: auto;
+  }
+
+  .btn-custom {
+    width: 100%;
+  }
+
+  .msg-panel {
+    padding: 1.5rem;
+  }
+
+  .chat-title {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .msg-panel {
+    padding: 0.5rem 1rem;
+  }
+
+  .message-area input {
+    height: 2rem;
+  }
+
+  .chat-title {
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+  }
 }
