@@ -13,7 +13,7 @@ export default function Chats() {
   return (
     <>
       <button
-        className="btn-custom mt-1 mb-1"
+        className="btn-custom mt-3 mb-3"
         onClick={() => setModalOpen(true)}
       >
         Start new chat +
@@ -23,15 +23,12 @@ export default function Chats() {
         {conversations.map((conversation, i) => (
           <li
             key={i}
-            className={`mb-1 align-items-center d-flex contact-li ${
+            className={`mb-1 align-items-center d-flex menu-li ${
               conversation.selected ? "selected" : ""
             }`}
             onClick={() => selectConversation(i)}
           >
-            <BsChatRightText
-              className="me-4 ms-2"
-              style={{ fontSize: "1.5rem" }}
-            />
+            <BsChatRightText className="me-4 ms-2 sidebar-icon" />
             {conversation.displayName}
           </li>
         ))}

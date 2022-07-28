@@ -5,7 +5,7 @@ import { useConversations } from "../contexts/ConversationsContext";
 import formatUserName from "../../utils/formatUserName";
 
 export default function NewChatModal({ closeModal, modalOpen }) {
-  const [selectedContactIds, setSelectedContactIds] = useState([]); // put back to empty after submit/close form
+  const [selectedContactIds, setSelectedContactIds] = useState([]);
   const [groupName, setGroupName] = useState("");
   const { contacts } = useContacts();
   const { createConversation } = useConversations();

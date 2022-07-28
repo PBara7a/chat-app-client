@@ -8,13 +8,6 @@ import Chats from "./Chats";
 import Contacts from "./Contacts";
 import UserAccountInfo from "../Modals/UserAccountInfo";
 
-const icons = {
-  color: "#fff",
-  fontSize: "1.4rem",
-  margin: "0 0.5rem",
-  cursor: "pointer",
-};
-
 const Sidebar = () => {
   const [activeTab, setActiveTab] = useState("chats");
   const [modalOpen, setModalOpen] = useState(false);
@@ -34,20 +27,20 @@ const Sidebar = () => {
     <div className="sidebar">
       <Nav className="sidebar-nav d-flex align-items-center position-relative">
         <Nav.Item onClick={() => setModalOpen(true)}>
-          <RiAccountCircleFill className="me-5" style={icons} />
+          <RiAccountCircleFill className="me-5 sidebar-icon" />
         </Nav.Item>
 
         <div className="d-flex position-absolute end-0">
           <Nav.Item onClick={() => setActiveTab("chats")}>
-            <AiOutlineComment style={icons} />
+            <AiOutlineComment className="sidebar-icon" />
           </Nav.Item>
 
           <Nav.Item onClick={() => setActiveTab("contacts")}>
-            <IoIosContacts style={icons} />
+            <IoIosContacts className="sidebar-icon" />
           </Nav.Item>
 
           <Nav.Item onClick={logout}>
-            <AiOutlinePoweroff style={icons} />
+            <AiOutlinePoweroff className="sidebar-icon" />
           </Nav.Item>
         </div>
       </Nav>

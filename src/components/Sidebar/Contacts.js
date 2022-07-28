@@ -14,7 +14,7 @@ export default function Contacts() {
   return (
     <>
       <button
-        className="btn-custom mt-1 mb-1"
+        className="btn-custom mt-3 mb-3"
         onClick={() => setModalOpen(true)}
       >
         Add new contact +
@@ -23,13 +23,10 @@ export default function Contacts() {
         {contacts &&
           contacts.map((contact) => (
             <li
-              className="contact-li align-items-center d-flex mb-1"
+              className="menu-li align-items-center d-flex mb-1"
               key={contact.id}
             >
-              <BsPersonBoundingBox
-                className="me-4 ms-2"
-                style={{ fontSize: "1.5rem" }}
-              />
+              <BsPersonBoundingBox className="me-4 ms-2 sidebar-icon" />
               {formatUserName(contact)}
             </li>
           ))}

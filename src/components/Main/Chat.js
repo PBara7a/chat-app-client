@@ -4,6 +4,7 @@ import MessageForm from "./MessageForm";
 import MessagesPanel from "./MessagesPanel";
 import { useSocket } from "../contexts/SocketContext";
 import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
+import HiddenSideBar from "../Sidebar/HiddenSideBar";
 
 const Chat = () => {
   const [text, setText] = useState("");
@@ -31,6 +32,7 @@ const Chat = () => {
       {selectedConversation && (
         <div className="chat">
           <header className="chat-header">
+            <HiddenSideBar />
             <h1 className="chat-title">{selectedConversation.displayName}</h1>
           </header>
 

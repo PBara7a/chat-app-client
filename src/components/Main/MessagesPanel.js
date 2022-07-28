@@ -20,7 +20,7 @@ const MessagesPanel = () => {
   };
 
   return (
-    <div className="msg-panel d-flex flex-column align-items-start px-5">
+    <div className="msg-panel d-flex flex-column align-items-start">
       {messages.map((message) => (
         <div
           key={message.id}
