@@ -8,7 +8,7 @@ const SocketContext = React.createContext();
 export const useSocket = () => useContext(SocketContext);
 
 export const SocketContextProvider = ({ children }) => {
-  const { updateConversations } = useConversations();
+  const { updateConversations, setConversationUnread } = useConversations();
   const { user } = useUserLoggedIn();
   const [socket, setSocket] = useState();
 
@@ -20,7 +20,9 @@ export const SocketContextProvider = ({ children }) => {
 
       newSocket.emit("user-connected", user.number);
 
-      newSocket.on("received-message", async () => {
+      newSocket.on("received-message", async (conversationId) => {
+        setConversationUnread(conversationId);
+
         await updateConversations();
       });
 

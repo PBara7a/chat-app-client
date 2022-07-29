@@ -3,12 +3,19 @@ import NewChatModal from "../Modals/NewChatModal";
 import { ListGroup } from "react-bootstrap";
 import { useConversations } from "../contexts/ConversationsContext";
 import { BsChatRightText } from "react-icons/bs";
+import { BsEnvelope } from "react-icons/bs";
 
 export default function Chats() {
   const [modalOpen, setModalOpen] = useState(false);
-  const { conversations, selectConversation } = useConversations();
+  const { conversations, selectConversation, setConversationRead } =
+    useConversations();
 
   const closeModal = () => setModalOpen(false);
+
+  const handleClick = (index, convoId) => {
+    selectConversation(index);
+    setConversationRead(convoId);
+  };
 
   return (
     <>
@@ -23,13 +30,16 @@ export default function Chats() {
         {conversations.map((conversation, i) => (
           <li
             key={i}
-            className={`mb-1 align-items-center d-flex menu-li ${
+            className={`mb-1 align-items-center d-flex menu-li position-relative ${
               conversation.selected ? "selected" : ""
             }`}
-            onClick={() => selectConversation(i)}
+            onClick={() => handleClick(i, conversation.id)}
           >
             <BsChatRightText className="me-4 ms-2 sidebar-icon" />
             {conversation.displayName}
+            {conversation.newMessage && (
+              <BsEnvelope className="new-message-icon position-absolute end-0 me-2" />
+            )}
           </li>
         ))}
       </ListGroup>

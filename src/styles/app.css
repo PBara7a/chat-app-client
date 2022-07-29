@@ -97,17 +97,36 @@
 
 .msg-panel {
   max-height: 100%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 2rem 3rem;
 }
 
-.message-me {
-  background-color: var(--message-sent);
+.message {
+  max-width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.message-others {
+.message p {
+  margin: 0;
+  max-width: 100%;
+}
+
+.message__from-me {
+  background-color: var(--message-sent);
+  border-bottom-left-radius: 10px;
+}
+
+.message__from-others {
   background-color: var(--message-received);
   color: var(--bg-color-sidebar);
+  border-bottom-right-radius: 10px;
+}
+
+.message__options {
+  font-size: 0.5rem;
+  cursor: pointer;
 }
 
 .message-area {
@@ -166,6 +185,10 @@ select:-webkit-autofill {
 
 .modal-content {
   background-color: inherit !important;
+}
+
+.new-message-icon {
+  color: var(--alert-color);
 }
 
 /* --------- */

@@ -3,6 +3,7 @@ import { useConversations } from "../contexts/ConversationsContext";
 import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
 import getMessageSender from "../../utils/getMessageSender";
 import { useCallback } from "react";
+import { AiOutlineCaretDown } from "react-icons/ai";
 
 const MessagesPanel = () => {
   const { messages } = useConversations();
@@ -27,11 +28,20 @@ const MessagesPanel = () => {
             }`}
           >
             <div
-              className={`rounded px-2 py-1 ${
-                message.senderId === id ? "message-me" : "message-others"
+              className={`message px-2 pt-1 pb-2 ${
+                message.senderId === id
+                  ? "message__from-me"
+                  : "message__from-others"
               }`}
             >
-              {message.text}
+              <div
+                className={`d-flex ${
+                  message.senderId === id ? "flex-row-reverse" : "flex-row"
+                }`}
+              >
+                <AiOutlineCaretDown className="message__options" />
+              </div>
+              <p>{message.text}</p>
             </div>
             <div
               className={`text-muted small ${

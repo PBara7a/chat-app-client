@@ -8,9 +8,12 @@ import HiddenSideBar from "../Sidebar/HiddenSideBar";
 
 const Chat = () => {
   const [text, setText] = useState("");
-  const { selectedConversation, sendMessage } = useConversations();
+  const { selectedConversation, sendMessage, unreadConversationIds } =
+    useConversations();
   const socket = useSocket();
   const { id } = useUserLoggedIn();
+
+  const hasNewMessages = unreadConversationIds.length > 0;
 
   const recipients = selectedConversation?.participants
     .filter((participant) => participant.id !== id)
@@ -32,7 +35,7 @@ const Chat = () => {
       {selectedConversation && (
         <div className="chat">
           <header className="chat-header">
-            <HiddenSideBar />
+            <HiddenSideBar hasNewMessages={hasNewMessages} />
             <h1 className="chat-title">{selectedConversation.displayName}</h1>
           </header>
 

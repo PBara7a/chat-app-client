@@ -11,6 +11,7 @@ export const useConversations = () => useContext(ConversationsContext);
 export const ConversationsContextProvider = ({ children }) => {
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
   const [conversations, setConversations] = useState([]);
+  const [unreadConversationIds, setUnreadConversationIds] = useState([]);
   const { id, user } = useUserLoggedIn();
   const { contacts } = useContacts();
   let messages;
@@ -27,10 +28,12 @@ export const ConversationsContextProvider = ({ children }) => {
 
   const formattedConversations = conversations.map((conversation, index) => {
     const selected = index === selectedConversationIndex;
+
     return {
       ...conversation,
       selected,
       displayName: setChatName(conversation, user, contacts),
+      newMessage: unreadConversationIds.includes(conversation.id),
     };
   });
 
@@ -40,6 +43,24 @@ export const ConversationsContextProvider = ({ children }) => {
   if (selectedConversation) {
     messages = selectedConversation.messages;
   }
+
+  const setConversationUnread = (convoId) => {
+    if (selectedConversation.id === convoId) return;
+
+    const conversationIds = [...unreadConversationIds];
+
+    if (!conversationIds.includes(convoId)) {
+      setUnreadConversationIds([...conversationIds, convoId]);
+    }
+  };
+
+  const setConversationRead = (convoId) => {
+    const conversationIds = unreadConversationIds.filter(
+      (id) => id !== convoId
+    );
+
+    setUnreadConversationIds(conversationIds);
+  };
 
   const createConversation = async (recipients, name) => {
     const data = {
@@ -85,6 +106,9 @@ export const ConversationsContextProvider = ({ children }) => {
     sendMessage,
     messages,
     updateConversations,
+    setConversationUnread,
+    setConversationRead,
+    unreadConversationIds,
   };
 
   return (

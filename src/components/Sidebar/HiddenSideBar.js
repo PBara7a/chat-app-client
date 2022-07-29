@@ -14,7 +14,7 @@ import {
   Offcanvas,
 } from "react-bootstrap";
 
-const HiddenSideBar = () => {
+const HiddenSideBar = ({ hasNewMessages }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("chats");
 
@@ -32,7 +32,9 @@ const HiddenSideBar = () => {
   return (
     <div className="sidebar-toggle">
       <Navbar expand="false">
-        <Navbar.Toggle />
+        <Navbar.Toggle
+          style={hasNewMessages ? { backgroundColor: "#fc6a03" } : {}}
+        />
         <Container fluid>
           <Navbar.Offcanvas
             placement="start"
