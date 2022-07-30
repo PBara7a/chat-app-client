@@ -5,7 +5,7 @@ import { useConversations } from "../contexts/ConversationsContext";
 import { BsChatRightText } from "react-icons/bs";
 import { BsEnvelope } from "react-icons/bs";
 
-export default function Chats() {
+export default function Chats({ offCanvas }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [searchStr, setSearchStr] = useState("");
   const { conversations, selectConversation, setConversationRead } =
@@ -33,7 +33,7 @@ export default function Chats() {
         name="search"
         value={searchStr}
         onChange={handleChange}
-        className="input-custom mt-3 mb-2"
+        className={`input-custom mt-3 mb-2 ${offCanvas ? "w-100" : ""}`}
         placeholder="search chats"
       />
       <button className="btn-custom mb-3" onClick={() => setModalOpen(true)}>

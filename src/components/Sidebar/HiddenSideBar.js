@@ -76,7 +76,11 @@ const HiddenSideBar = ({ hasNewMessages }) => {
                 </Nav.Item>
               </Nav>
 
-              {activeTab === "chats" ? <Chats /> : <Contacts />}
+              {activeTab === "chats" ? (
+                <Chats offCanvas={true} />
+              ) : (
+                <Contacts offCanvas={true} />
+              )}
               <UserAccountInfo closeModal={closeModal} modalOpen={modalOpen} />
             </Offcanvas.Body>
           </Navbar.Offcanvas>

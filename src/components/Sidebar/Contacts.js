@@ -6,7 +6,7 @@ import { useContacts } from "../contexts/ContactsContext";
 import formatUserName from "../../utils/formatUserName";
 import ContactAccountInfo from "../Modals/ContactAccountInfo";
 
-export default function Contacts() {
+export default function Contacts({ offCanvas }) {
   const [newContactModalOpen, setNewContactModalOpen] = useState(false);
   const [contactInfoModalOpen, setContactInfoModalOpen] = useState(false);
   const { contacts } = useContacts();
@@ -32,7 +32,7 @@ export default function Contacts() {
         name="search"
         value={searchStr}
         onChange={handleChange}
-        className="input-custom mt-3 mb-2"
+        className={`input-custom mt-3 mb-2 ${offCanvas ? "w-100" : ""}`}
         placeholder="search contacts"
       />
       <button
