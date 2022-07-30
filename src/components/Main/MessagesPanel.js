@@ -2,10 +2,12 @@ import { useContacts } from "../contexts/ContactsContext";
 import { useConversations } from "../contexts/ConversationsContext";
 import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
 import getMessageSender from "../../utils/getMessageSender";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { AiOutlineCaretDown } from "react-icons/ai";
+import MessageOptions from "../Modals/MessageOptions";
 
 const MessagesPanel = () => {
+  const [modal, setModal] = useState({ open: false, messageId: null });
   const { messages } = useConversations();
   const { id } = useUserLoggedIn();
   const { contacts } = useContacts();
@@ -14,6 +16,8 @@ const MessagesPanel = () => {
       messageDiv.scrollIntoView({ behavior: "smooth" });
     }
   }, []);
+
+  const closeModal = () => setModal({ open: false, id: null });
 
   return (
     <div className="msg-panel d-flex flex-column align-items-start">
@@ -34,12 +38,13 @@ const MessagesPanel = () => {
                   : "message__from-others"
               }`}
             >
-              <div
-                className={`d-flex ${
-                  message.senderId === id ? "flex-row-reverse" : "flex-row"
-                }`}
-              >
-                <AiOutlineCaretDown className="message__options" />
+              <div className="d-flex flex-row-reverse">
+                <AiOutlineCaretDown
+                  className="message__options"
+                  onClick={() =>
+                    setModal({ open: true, messageId: message.id })
+                  }
+                />
               </div>
               <p>{message.text}</p>
             </div>
@@ -53,6 +58,7 @@ const MessagesPanel = () => {
           </div>
         );
       })}
+      <MessageOptions closeModal={closeModal} modal={modal} />
     </div>
   );
 };
