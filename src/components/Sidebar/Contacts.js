@@ -11,21 +11,40 @@ export default function Contacts() {
   const [contactInfoModalOpen, setContactInfoModalOpen] = useState(false);
   const { contacts } = useContacts();
   const [selectedContact, setSelectedContact] = useState();
+  const [searchStr, setSearchStr] = useState("");
+  console.log(searchStr);
+
+  const handleChange = (e) => {
+    setSearchStr(e.target.value.toLowerCase());
+  };
+
+  const displayContacts = contacts.filter((contact) => {
+    const name = formatUserName(contact).toLowerCase();
+    return name.includes(searchStr);
+  });
 
   const closeNewContactModal = () => setNewContactModalOpen(false);
   const closeContactInfoModal = () => setContactInfoModalOpen(false);
 
   return (
     <>
+      <input
+        type="search"
+        name="search"
+        value={searchStr}
+        onChange={handleChange}
+        className="input-custom mt-3 mb-2"
+        placeholder="search contacts"
+      />
       <button
-        className="btn-custom mt-3 mb-3"
+        className="btn-custom mb-3"
         onClick={() => setNewContactModalOpen(true)}
       >
         Add new contact +
       </button>
       <ListGroup>
         {contacts &&
-          contacts.map((contact) => (
+          displayContacts.map((contact) => (
             <li
               className="menu-li align-items-center d-flex mb-1"
               key={contact.id}

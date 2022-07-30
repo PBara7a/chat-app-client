@@ -65,7 +65,7 @@ export default function NewChatModal({ closeModal, modalOpen }) {
           {multipleRecipients && (
             <input
               required
-              className="input-custom mt-2 mb-2"
+              className="input-custom mt-2 mb-2 w-100"
               placeholder="Chat name"
               value={groupName}
               onChange={(e) => setGroupName(e.target.value)}

@@ -78,7 +78,7 @@ const UserForm = ({ isRegistered }) => {
       {!isRegistered && (
         <Form.Group className="mb-1">
           <input
-            className="input-custom mb-1"
+            className="input-custom mb-1 w-100"
             type="text"
             placeholder="First Name"
             value={formData.firstName}
@@ -87,7 +87,7 @@ const UserForm = ({ isRegistered }) => {
           />
 
           <input
-            className="input-custom"
+            className="input-custom  w-100"
             type="text"
             placeholder="Last Name"
             value={formData.lastName}
@@ -100,7 +100,7 @@ const UserForm = ({ isRegistered }) => {
       <Form.Group>
         <input
           required
-          className="input-custom mb-1"
+          className="input-custom mb-1  w-100"
           type="email"
           placeholder="Email"
           value={formData.email}
@@ -110,7 +110,7 @@ const UserForm = ({ isRegistered }) => {
 
         <input
           required
-          className="input-custom mb-1"
+          className="input-custom mb-1  w-100"
           type="password"
           placeholder="Password"
           value={formData.password}
@@ -124,8 +124,8 @@ const UserForm = ({ isRegistered }) => {
               required
               className={
                 passwordsMatch
-                  ? "input-custom"
-                  : "input-custom input-custom__wrong"
+                  ? "input-custom  w-100"
+                  : "input-custom input-custom__wrong  w-100"
               }
               type="password"
               placeholder="Confirm Password"

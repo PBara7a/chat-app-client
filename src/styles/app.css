@@ -145,7 +145,8 @@
 .input-custom {
   display: block;
   text-align: center;
-  width: 100%;
+  margin: 0 auto;
+  width: 95%;
   color: var(--primary-color);
   background-color: var(--primary-color-transparent);
   border: 1px solid var(--primary-color);

@@ -47,7 +47,7 @@ const NewContactModal = ({ closeModal, modalOpen }) => {
         {error && error}
         <Form onSubmit={handleSubmit}>
           <input
-            className={`input-custom mb-2 ${
+            className={`input-custom mb-2 w-100 ${
               error ? "input-custom__wrong" : ""
             }`}
             type="number"
