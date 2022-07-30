@@ -7,8 +7,17 @@ import { BsEnvelope } from "react-icons/bs";
 
 export default function Chats() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [searchStr, setSearchStr] = useState("");
   const { conversations, selectConversation, setConversationRead } =
     useConversations();
+
+  const handleChange = (e) => {
+    setSearchStr(e.target.value.toLowerCase());
+  };
+
+  const displayChats = conversations.filter((conversation) => {
+    return conversation.name.toLowerCase().includes(searchStr);
+  });
 
   const closeModal = () => setModalOpen(false);
 
@@ -19,15 +28,20 @@ export default function Chats() {
 
   return (
     <>
-      <button
-        className="btn-custom mt-3 mb-3"
-        onClick={() => setModalOpen(true)}
-      >
+      <input
+        type="search"
+        name="search"
+        value={searchStr}
+        onChange={handleChange}
+        className="input-custom mt-3 mb-2"
+        placeholder="search chats"
+      />
+      <button className="btn-custom mb-3" onClick={() => setModalOpen(true)}>
         Start new chat +
       </button>
 
       <ListGroup variant="flush">
-        {conversations.map((conversation, i) => (
+        {displayChats.map((conversation, i) => (
           <li
             key={i}
             className={`mb-1 align-items-center d-flex menu-li position-relative ${

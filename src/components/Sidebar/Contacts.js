@@ -12,7 +12,6 @@ export default function Contacts() {
   const { contacts } = useContacts();
   const [selectedContact, setSelectedContact] = useState();
   const [searchStr, setSearchStr] = useState("");
-  console.log(searchStr);
 
   const handleChange = (e) => {
     setSearchStr(e.target.value.toLowerCase());
