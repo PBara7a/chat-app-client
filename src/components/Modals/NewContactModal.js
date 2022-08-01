@@ -21,7 +21,7 @@ const NewContactModal = ({ closeModal, modalOpen }) => {
     const newContact = newContactJSON(contactRef);
 
     try {
-      await client.post(`/users/${id}/contacts`, newContact, false);
+      await client.post(`/users/${id}/contacts`, newContact);
 
       await updateContacts();
 

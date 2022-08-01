@@ -6,7 +6,7 @@ const MessageOptions = ({ closeModal, modal }) => {
     e.preventDefault();
 
     try {
-      await client.delete(`/messages/${modal.messageId}`, false);
+      await client.delete(`/messages/${modal.messageId}`);
 
       closeModal();
     } catch (e) {

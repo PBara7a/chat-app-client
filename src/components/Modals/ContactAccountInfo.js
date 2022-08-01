@@ -12,7 +12,7 @@ const ContactAccountInfo = ({ closeModal, modalOpen, contact }) => {
     const data = { number: contact.number };
 
     try {
-      client.patch(`/users/${user.id}/contacts`, data, false);
+      client.patch(`/users/${user.id}/contacts`, data);
 
       await updateContacts();
 

@@ -69,7 +69,7 @@ export const ConversationsContextProvider = ({ children }) => {
       participants: [...recipients, id],
     };
 
-    await client.post("/conversations", data, false);
+    await client.post("/conversations", data);
 
     await updateConversations();
   };
