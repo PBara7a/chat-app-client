@@ -5,7 +5,7 @@ import { useConversations } from "../contexts/ConversationsContext";
 import { BsChatRightText } from "react-icons/bs";
 import { BsEnvelope } from "react-icons/bs";
 
-export default function Chats({ offCanvas }) {
+const Chats = ({ offCanvas }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [searchStr, setSearchStr] = useState("");
   const { conversations, selectConversation, setConversationRead } =
@@ -61,4 +61,6 @@ export default function Chats({ offCanvas }) {
       <NewChatModal closeModal={closeModal} modalOpen={modalOpen} />
     </>
   );
-}
+};
+
+export default Chats;

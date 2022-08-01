@@ -6,7 +6,7 @@ import { useContacts } from "../contexts/ContactsContext";
 import formatUserName from "../../utils/formatUserName";
 import ContactAccountInfo from "../Modals/ContactAccountInfo";
 
-export default function Contacts({ offCanvas }) {
+const Contacts = ({ offCanvas }) => {
   const [newContactModalOpen, setNewContactModalOpen] = useState(false);
   const [contactInfoModalOpen, setContactInfoModalOpen] = useState(false);
   const { contacts } = useContacts();
@@ -70,4 +70,6 @@ export default function Contacts({ offCanvas }) {
       />
     </>
   );
-}
+};
+
+export default Contacts;

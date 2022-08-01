@@ -9,26 +9,24 @@ import { ContactsContextProvider } from "./contexts/ContactsContext";
 import { ConversationsContextProvider } from "./contexts/ConversationsContext";
 import { SocketContextProvider } from "./contexts/SocketContext";
 
-function App() {
-  return (
-    <UserLoggedInContextProvider>
-      <ContactsContextProvider>
-        <ConversationsContextProvider>
-          <SocketContextProvider>
-            <div className="App">
-              <Routes>
-                <Route path="/login" element={<LoginPage />} />
+const App = () => (
+  <UserLoggedInContextProvider>
+    <ContactsContextProvider>
+      <ConversationsContextProvider>
+        <SocketContextProvider>
+          <div className="App">
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
 
-                <Route element={<AuthenticateUser redirectPath={"/login"} />}>
-                  <Route path="/" element={<Dashboard />} />
-                </Route>
-              </Routes>
-            </div>
-          </SocketContextProvider>
-        </ConversationsContextProvider>
-      </ContactsContextProvider>
-    </UserLoggedInContextProvider>
-  );
-}
+              <Route element={<AuthenticateUser redirectPath={"/login"} />}>
+                <Route path="/" element={<Dashboard />} />
+              </Route>
+            </Routes>
+          </div>
+        </SocketContextProvider>
+      </ConversationsContextProvider>
+    </ContactsContextProvider>
+  </UserLoggedInContextProvider>
+);
 
 export default App;

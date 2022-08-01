@@ -4,7 +4,7 @@ import { useContacts } from "../contexts/ContactsContext";
 import { useConversations } from "../contexts/ConversationsContext";
 import formatUserName from "../../utils/formatUserName";
 
-export default function NewChatModal({ closeModal, modalOpen }) {
+const NewChatModal = ({ closeModal, modalOpen }) => {
   const [selectedContactIds, setSelectedContactIds] = useState([]);
   const [groupName, setGroupName] = useState("");
   const { contacts } = useContacts();
@@ -76,4 +76,6 @@ export default function NewChatModal({ closeModal, modalOpen }) {
       </Modal.Body>
     </Modal>
   );
-}
+};
+
+export default NewChatModal;
