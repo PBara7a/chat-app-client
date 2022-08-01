@@ -5,13 +5,18 @@ import MessagesPanel from "./MessagesPanel";
 import { useSocket } from "../contexts/SocketContext";
 import { useUserLoggedIn } from "../contexts/UserLoggedInContext";
 import HiddenSideBar from "../Sidebar/HiddenSideBar";
+import { AiOutlineGif } from "react-icons/ai";
+import SearchGif from "../Modals/SearchGif";
 
 const Chat = () => {
   const [text, setText] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
   const { selectedConversation, sendMessage, unreadConversationIds } =
     useConversations();
   const socket = useSocket();
   const { id } = useUserLoggedIn();
+
+  const closeModal = () => setModalOpen(false);
 
   const hasNewMessages = unreadConversationIds.length > 0;
 
@@ -40,12 +45,25 @@ const Chat = () => {
 
         {selectedConversation ? <MessagesPanel /> : <div></div>}
 
-        <MessageForm
-          text={text}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
+        <div className="grid__two-column__expand-one me-3">
+          <MessageForm
+            text={text}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+          <div className="center">
+            <AiOutlineGif
+              className="sidebar-icon gif-btn"
+              onClick={() => setModalOpen(true)}
+            />
+          </div>
+        </div>
       </div>
+      <SearchGif
+        closeModal={closeModal}
+        modalOpen={modalOpen}
+        recipients={recipients}
+      />
     </>
   );
 };

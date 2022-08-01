@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 const MessageForm = ({ text, handleChange, handleSubmit }) => {
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group className="">
+      <Form.Group>
         <div className="message-area m-2">
           <input
             type="textarea"

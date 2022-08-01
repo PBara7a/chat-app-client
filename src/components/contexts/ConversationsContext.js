@@ -79,11 +79,12 @@ export const ConversationsContextProvider = ({ children }) => {
     setConversations(res.data.data);
   };
 
-  const sendMessage = async (socket, text, recipients) => {
+  const sendMessage = async (socket, text, recipients, isGif) => {
     const messageJSON = {
       sender_id: id,
       conversation_id: selectedConversation.id,
       text,
+      is_gif: isGif,
     };
 
     const newMessageState = {
@@ -92,6 +93,7 @@ export const ConversationsContextProvider = ({ children }) => {
       conversationId: selectedConversation.id,
       text: text,
       sender: { number: user.number },
+      isGif,
     };
     messages.push(newMessageState);
 

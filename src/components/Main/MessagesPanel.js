@@ -46,7 +46,11 @@ const MessagesPanel = () => {
                   }
                 />
               </div>
-              <p>{message.text}</p>
+              {message.isGif ? (
+                <img src={message.text} />
+              ) : (
+                <p>{message.text}</p>
+              )}
             </div>
             <div
               className={`text-muted small ${
