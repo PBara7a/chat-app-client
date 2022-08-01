@@ -42,6 +42,12 @@
   display: none;
 }
 
+.sidebar__active-tab {
+  color: var(--bg-color-login) !important;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
+
 .menu-li {
   list-style: none;
   padding: 3%;
@@ -127,11 +133,6 @@
 .message__options {
   font-size: 0.5rem;
   cursor: pointer;
-}
-
-.message-area {
-  display: grid;
-  grid-template-columns: 10fr 1fr;
 }
 
 .message-area input {

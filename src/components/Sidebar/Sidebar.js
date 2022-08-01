@@ -18,8 +18,8 @@ const Sidebar = () => {
 
   const logout = (e) => {
     e.preventDefault();
-    localStorage.setItem(process.env.REACT_APP_USER_TOKEN, "");
-    localStorage.setItem("userId", "");
+    localStorage.removeItem(process.env.REACT_APP_USER_TOKEN, "");
+    localStorage.removeItem("userId", "");
     navigate("../login", { replace: true });
   };
 
@@ -27,16 +27,28 @@ const Sidebar = () => {
     <div className="sidebar">
       <Nav className="sidebar-nav d-flex align-items-center position-relative">
         <Nav.Item onClick={() => setModalOpen(true)}>
-          <RiAccountCircleFill className="me-5 sidebar-icon" />
+          <RiAccountCircleFill
+            className={`me-5 sidebar-icon ${
+              modalOpen ? "sidebar__active-tab" : ""
+            }`}
+          />
         </Nav.Item>
 
         <div className="d-flex position-absolute end-0">
           <Nav.Item onClick={() => setActiveTab("chats")}>
-            <AiOutlineComment className="sidebar-icon" />
+            <AiOutlineComment
+              className={`sidebar-icon ${
+                activeTab === "chats" ? "sidebar__active-tab" : ""
+              }`}
+            />
           </Nav.Item>
 
           <Nav.Item onClick={() => setActiveTab("contacts")}>
-            <IoIosContacts className="sidebar-icon" />
+            <IoIosContacts
+              className={`sidebar-icon ${
+                activeTab === "contacts" ? "sidebar__active-tab" : ""
+              }`}
+            />
           </Nav.Item>
 
           <Nav.Item onClick={logout}>
@@ -45,7 +57,9 @@ const Sidebar = () => {
         </div>
       </Nav>
 
-      {activeTab === "chats" ? <Chats /> : <Contacts />}
+      {activeTab === "chats" && <Chats />}
+      {activeTab === "contacts" && <Contacts />}
+
       <UserAccountInfo closeModal={closeModal} modalOpen={modalOpen} />
     </div>
   );

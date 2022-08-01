@@ -12,9 +12,6 @@ const MessageForm = ({ text, handleChange, handleSubmit }) => {
             value={text}
             onChange={handleChange}
           />
-          <button className="btn-custom ms-1" type="submit">
-            Send
-          </button>
         </div>
       </Form.Group>
     </Form>
