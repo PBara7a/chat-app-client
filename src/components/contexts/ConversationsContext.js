@@ -3,6 +3,7 @@ import { useUserLoggedIn } from "./UserLoggedInContext";
 import { useContacts } from "./ContactsContext";
 import client from "../../utils/client";
 import setChatName from "../../utils/setChatName";
+import { encrypt } from "../../utils/crypto";
 
 const ConversationsContext = React.createContext();
 
@@ -80,10 +81,11 @@ export const ConversationsContextProvider = ({ children }) => {
   };
 
   const sendMessage = async (socket, text, recipients, isGif) => {
+    const encryptedText = encrypt(text);
     const messageJSON = {
       sender_id: id,
       conversation_id: selectedConversation.id,
-      text,
+      text: encryptedText,
       is_gif: isGif,
     };
 
@@ -91,7 +93,7 @@ export const ConversationsContextProvider = ({ children }) => {
       id: --tempMessageId,
       senderId: id,
       conversationId: selectedConversation.id,
-      text: text,
+      text: encryptedText,
       sender: { number: user.number },
       isGif,
     };

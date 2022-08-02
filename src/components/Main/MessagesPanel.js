@@ -5,6 +5,7 @@ import getMessageSender from "../../utils/getMessageSender";
 import { useCallback, useState } from "react";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import MessageOptions from "../Modals/MessageOptions";
+import { decrypt } from "../../utils/crypto";
 
 const MessagesPanel = () => {
   const [modal, setModal] = useState({ open: false, messageId: null });
@@ -21,47 +22,49 @@ const MessagesPanel = () => {
 
   return (
     <div className="msg-panel d-flex flex-column align-items-start">
-      {messages.map((message, i) => {
-        const lastMessage = messages.length - 1 === i;
-        return (
-          <div
-            key={message.id}
-            ref={lastMessage ? setLastMessageRef : null}
-            className={`my-1 d-flex flex-column ${
-              message.senderId === id ? "align-self-end" : ""
-            }`}
-          >
+      {messages &&
+        messages.map((message, i) => {
+          const lastMessage = messages.length - 1 === i;
+          const decryptedText = decrypt(message.text);
+          return (
             <div
-              className={`message px-2 pt-1 pb-2 ${
-                message.senderId === id
-                  ? "message__from-me"
-                  : "message__from-others"
+              key={message.id}
+              ref={lastMessage ? setLastMessageRef : null}
+              className={`my-1 d-flex flex-column ${
+                message.senderId === id ? "align-self-end" : ""
               }`}
             >
-              <div className="d-flex flex-row-reverse">
-                <AiOutlineCaretDown
-                  className="message__options"
-                  onClick={() =>
-                    setModal({ open: true, messageId: message.id })
-                  }
-                />
+              <div
+                className={`message px-2 pt-1 pb-2 ${
+                  message.senderId === id
+                    ? "message__from-me"
+                    : "message__from-others"
+                }`}
+              >
+                <div className="d-flex flex-row-reverse">
+                  <AiOutlineCaretDown
+                    className="message__options"
+                    onClick={() =>
+                      setModal({ open: true, messageId: message.id })
+                    }
+                  />
+                </div>
+                {message.isGif ? (
+                  <img src={decryptedText} alt="" />
+                ) : (
+                  <p>{decryptedText}</p>
+                )}
               </div>
-              {message.isGif ? (
-                <img src={message.text} />
-              ) : (
-                <p>{message.text}</p>
-              )}
+              <div
+                className={`text-muted small ${
+                  message.senderId === id ? "text-end" : "text-start"
+                }`}
+              >
+                {getMessageSender(message, id, contacts)}
+              </div>
             </div>
-            <div
-              className={`text-muted small ${
-                message.senderId === id ? "text-end" : "text-start"
-              }`}
-            >
-              {getMessageSender(message, id, contacts)}
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
       <MessageOptions closeModal={closeModal} modal={modal} />
     </div>
   );

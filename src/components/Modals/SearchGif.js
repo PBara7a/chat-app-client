@@ -47,14 +47,54 @@ const SearchGif = ({ closeModal, modalOpen, recipients }) => {
           borderBottomRightRadius: "10px",
         }}
       >
-        <img id="preview-gif1" className="gif-preview" onClick={handleClick} />
-        <img id="preview-gif2" className="gif-preview" onClick={handleClick} />
-        <img id="preview-gif3" className="gif-preview" onClick={handleClick} />
-        <img id="preview-gif4" className="gif-preview" onClick={handleClick} />
-        <img id="preview-gif5" className="gif-preview" onClick={handleClick} />
-        <img id="preview-gif6" className="gif-preview" onClick={handleClick} />
-        <img id="preview-gif7" className="gif-preview" onClick={handleClick} />
-        <img id="preview-gif8" className="gif-preview" onClick={handleClick} />
+        <img
+          id="preview-gif1"
+          alt=""
+          className="gif-preview"
+          onClick={handleClick}
+        />
+        <img
+          id="preview-gif2"
+          alt=""
+          className="gif-preview"
+          onClick={handleClick}
+        />
+        <img
+          id="preview-gif3"
+          alt=""
+          className="gif-preview"
+          onClick={handleClick}
+        />
+        <img
+          id="preview-gif4"
+          alt=""
+          className="gif-preview"
+          onClick={handleClick}
+        />
+        <img
+          id="preview-gif5"
+          alt=""
+          className="gif-preview"
+          onClick={handleClick}
+        />
+        <img
+          id="preview-gif6"
+          alt=""
+          className="gif-preview"
+          onClick={handleClick}
+        />
+        <img
+          id="preview-gif7"
+          alt=""
+          className="gif-preview"
+          onClick={handleClick}
+        />
+        <img
+          id="preview-gif8"
+          alt=""
+          className="gif-preview"
+          onClick={handleClick}
+        />
       </Modal.Body>
     </Modal>
   );
