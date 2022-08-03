@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Messaging web app built with React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of contents
 
-## Available Scripts
+1. [Overview](#overview)
+2. [Learning Objectives](#objectives)
+3. [Features](#features)
+4. [How to install](#install)
+5. [Demos](#demos)
 
-In the project directory, you can run:
+<a id="overview"></a>
 
-### `npm start`
+## 1. Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Main demo](assets/Main%20demo.gif)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This is the client side of the application.
+The server can be found [here](https://github.com/PBara7a/chat-app-server).
 
-### `npm test`
+App built with React, Bootstrap, Node.js, Express, Socket.io, Prisma and PostgreSQL.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- A unique contact number is attributed to every registered user.
+- Users can send messages to other individual users or to group chats.
+- The message content is encrypted and decrypted on the client side.
 
-### `npm run build`
+<a id="objectives"></a>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 2. Learning Objectives
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Understand the advantages and use the useContext hook to share data between components, as an alternative to props.
+- Allow the user to perform create, read, update and delete operations on data.
+- Learn the basics of websockets and how to maintain two-way real-time interactive communication between client and server.
+- How to implement end-to-end encryption.
+- Consuming and external API (Tenor).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<a id="features"></a>
 
-### `npm run eject`
+## 3. Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Data is stored in persistent storage.
+- The user can manage their contact list.
+- Messages can be sent to individual users or groups of users.
+- Users can make their communications more engaging by sharing animated gifs in their chats.
+- Messages are protected by end-to-end encryption.
+- Contacts and chats can be filtered by name.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<a id="install"></a>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 4. How to install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Get the server up and running. Follow instructions [here](https://github.com/PBara7a/chat-app-server).
+2. Fork and clone this repository.
+3. Install dependencies
+   ```sh
+   npm install
+   ```
+4. Create your .env.development file, use .env.development.example as a reference.
+5. Start the application
+   ```sh
+   npm start
+   ```
 
-## Learn More
+<a id="demos"></a>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 5. Demos
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Register user
 
-### Code Splitting
+![Register user demo](assets/Register%20user%20demo.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Add new contact
 
-### Analyzing the Bundle Size
+![Add new contact demo](assets/New%20contact%20demo.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Start new chat
 
-### Making a Progressive Web App
+![Start new chat demo](assets/New%20chat%20demo.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Send animated gifs
 
-### Advanced Configuration
+![Sending gifs demo](assets/GIF%20demo.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Filter contacts/chats
 
-### Deployment
+![Filter contacts or chats demo](assets/Filter%20demo.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<a id="license"></a>

@@ -29,6 +29,7 @@ const Chats = ({ offCanvas }) => {
   return (
     <>
       <input
+        autoComplete="off"
         type="search"
         name="search"
         value={searchStr}
